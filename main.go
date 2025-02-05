@@ -12,9 +12,9 @@ import (
 func main(){
 
 	c := cron.New()
-	c.AddFunc("*/500 * * * *", func() {
+	c.AddFunc("*/550 * * * *", func() {
 		fmt.Println("Cronning")
-		http.Get("https://hng12-be-0.onrender.com/")
+		http.Get("https://fun-numbers.onrender.com/")
 
 	})
 	c.Start()

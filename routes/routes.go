@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	controller "github.com/samuelIkoli/fun_numbers/controllers"
+	controller "github.com/samuelIkoli/fun_numbers/handlers"
 )
 
 func RegisterRoutes(router *gin.Engine) {
