@@ -58,7 +58,7 @@ func Numerate(c *gin.Context) {
 	isPrime := services.IsPrime(number)
 	isArmstrong := services.IsArmstrong(number)
 	isPerfect := services.IsPerfectNumber(number)
-	resp, err:= http.Get(`http://numbersapi.com/`+ strconv.Itoa(number))
+	resp, err:= http.Get("http://numbersapi.com/"+ strconv.Itoa(number) + "/math")
 	if err != nil {
 		// If there's an error, send a response with the error
 		c.JSON(http.StatusInternalServerError, gin.H{
