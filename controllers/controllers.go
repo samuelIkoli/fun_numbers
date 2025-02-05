@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -56,7 +58,30 @@ func Numerate(c *gin.Context) {
 	isPrime := services.IsPrime(number)
 	isArmstrong := services.IsArmstrong(number)
 	isPerfect := services.IsPerfectNumber(number)
+	resp, err:= http.Get(`http://numbersapi.com/`+ strconv.Itoa(number))
+	if err != nil {
+		// If there's an error, send a response with the error
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": fmt.Sprintf("Failed to fetch data from API: %v", err),
+		})
+		return
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		// If there's an error reading the response body
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": fmt.Sprintf("Failed to read API response: %v", err),
+		})
+		return
+	}
+
+	// Send the data from the external API as the response
 	
+	fact := string(body)
+	fmt.Println("the fact of the matter is", fact)
 
 
 	result := entity.Response2{
@@ -64,7 +89,7 @@ func Numerate(c *gin.Context) {
 		Prime: isPrime,
 		Perfect: isPerfect,
 		Digit_sum: digitSum,
-		Fun_fact: "A good number",
+		Fun_fact: fact,
 	}
 
 	if isArmstrong {
