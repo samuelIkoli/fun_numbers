@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/robfig/cron"
@@ -14,7 +13,7 @@ func main(){
 	c := cron.New()
 	c.AddFunc("*/550 * * * *", func() {
 		fmt.Println("Cronning")
-		http.Get("https://fun-numbers.onrender.com/")
+		// http.Get("https://fun-numbers.onrender.com/")
 
 	})
 	c.Start()

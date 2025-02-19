@@ -102,5 +102,12 @@ func Numerate(c *gin.Context) {
 	c.JSON(http.StatusOK, result)
 }
 
+// func get_symbols(ctx *gin.Context){
+// 	ctx.JSON(200, gin.H{
+// 		"message": "Pong ",
+// 	})
+// }
 
-
+func Webhook(ctx *gin.Context){
+	ctx.JSON(200, entity.Integrationson)
+}
