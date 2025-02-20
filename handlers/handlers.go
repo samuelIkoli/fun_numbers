@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"sync"
@@ -143,7 +144,8 @@ func Get_symbols(ctx *gin.Context){
         "event_name": "Forex Update",
         "status": "success",
 	}
-	telresponse, err := services.PostToReturnURL("https://ping.telex.im/v1/webhooks/01950b90-b1bf-75b7-b9e6-e831fdd18b5f", telex_data)
+	telex_url := os.Getenv("TELEX_WEBHOOK")
+	telresponse, err := services.PostToReturnURL(telex_url, telex_data)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
