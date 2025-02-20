@@ -21,25 +21,24 @@ var Integrationson = map[string]interface{}{
         "Updates",
       },
       "author": "Samuel Ikoli",
+      "permissions": map[string]interface{}{
+                    "monitoring_user": map[string]interface{}{
+                        "always_online": true,
+                        "display_name": "Network Monitor",
+                    },
+      },
       "settings": []map[string]interface{}{
         {
           "label": "interval",
-          "type": "dropdown",
+          "type": "text",
           "required": true,
           "default": "* * * * *",
-          "options": []string{
-            "* * * * *",
-            "*/5 * * * *",
-            "*/60 * * * *",
-            "*/550 * * * *",
-            "0 * * * *",
-          },
+        },
         },
       },
       "target_url": "",
       "tick_url": "https://fun-numbers.onrender.com/tick",
-    },
-  }
+    }
 
   type MonitorPayload struct {
     ChannelID string        `json:"channel_id,omitempty"`
