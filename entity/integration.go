@@ -89,7 +89,6 @@ var Integrationson = map[string]interface{}{
         },
         },
       },
-      "target_url": "",
       "tick_url": "https://fun-numbers.onrender.com/tick",
     }
 
