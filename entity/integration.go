@@ -40,3 +40,10 @@ var Integrationson = map[string]interface{}{
       "tick_url": "https://fun-numbers.onrender.com/tick",
     },
   }
+
+  type MonitorPayload struct {
+    ChannelID string        `json:"channel_id,omitempty"`
+    ReturnURL string        `json:"return_url,omitempty"`
+    Settings  []interface{} `json:"settings,omitempty"`
+  }
+  

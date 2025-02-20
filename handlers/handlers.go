@@ -104,6 +104,12 @@ func Numerate(c *gin.Context) {
 }
 
 func Get_symbols(ctx *gin.Context){
+
+	var payload entity.MonitorPayload
+	if err := ctx.ShouldBindJSON(&payload); err != nil {
+		fmt.Println("⚠️ No payload supplied, proceeding without it...")
+	}
+
 	symbols := []string{
         "GBPUSD", "EURJPY",
         "EURUSD", "EURCHF",
@@ -131,14 +137,26 @@ func Get_symbols(ctx *gin.Context){
 	}
 	wg.Wait()
 	fmt.Println(results.String())
-	ctx.JSON(200, gin.H{
-		"message": strings.Split(strings.TrimSuffix(results.String(), "\n"), "\n"),
+	telex_data := gin.H{
+		"message": strings.Join(strings.Split(results.String(), "\n"), "\n"),
 		"username": "Samex Forex Update",
         "event_name": "Forex Update",
         "status": "Success",
-	})
+	}
+	if payload.ReturnURL != "" {
+		telresponse, err := services.PostToReturnURL(payload.ReturnURL, telex_data)
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	fmt.Println(telresponse)
+	}
+
+	ctx.JSON(200, telex_data)
 }
 
 func Webhook(ctx *gin.Context){
 	ctx.JSON(200, entity.Integrationson)
 }
+
+//id = 01950b90-b1bf-75b7-b9e6-e831fdd18b5f

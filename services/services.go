@@ -1,6 +1,7 @@
 package services
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -90,7 +91,7 @@ type TwelveDataResponse struct {
 }
 
 func TwelveDemo(from string, to string) (string){
-	demoKey := "3086f380e87b4353a4fd98f1a2c71b42"
+	demoKey := "cae498ee82f74affa07af5f481ec7a95"
 	url := fmt.Sprintf("https://api.twelvedata.com/time_series?symbol=%s/%s&interval=1day&apikey=%s", from, to, demoKey)
 	fmt.Println("In twelvedemo start")
 	var ex string
@@ -131,4 +132,29 @@ func TwelveDemo(from string, to string) (string){
 	fmt.Println(ex)
 
 	return ex
+}
+
+func PostToReturnURL(url string, data interface{}) (string, error) {
+	fmt.Println("Posting to telex")
+	// Marshal the data into JSON
+	jsonData, err := json.Marshal(data)
+	if err != nil {
+		return "", fmt.Errorf("error marshaling JSON: %v", err)
+	}
+	fmt.Println("post data is..")
+	fmt.Println(string(jsonData))
+	// Make the POST request
+	resp, err := http.Post(url, "application/json", bytes.NewBuffer(jsonData))
+	if err != nil {
+		return "", fmt.Errorf("error making POST request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", fmt.Errorf("error reading response: %v", err)
+	}
+
+	return string(body), nil
 }

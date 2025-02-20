@@ -17,4 +17,5 @@ func RegisterRoutes(router *gin.Engine) {
 	router.GET("/ping", controller.Ping)
 	router.GET("/telex-webhook", controller.Webhook)
 	router.GET("/tick", controller.Get_symbols)
+	router.POST("/tick", controller.Get_symbols)
 }
