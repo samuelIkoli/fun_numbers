@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/robfig/cron"
@@ -23,7 +26,22 @@ func main(){
 	})
 	c.Start()
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	server:= gin.Default()
+	config := cors.Config{
+		AllowOrigins:     []string{fmt.Sprintf("http://localhost:%s", port), "https://telex.im"},
+		AllowMethods:     []string{"GET", "POST"},
+		AllowHeaders:     []string{"Content-Type", "Authorization"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}
+
+	// Apply CORS middleware
+	server.Use(cors.New(config))
 
 	routes.RegisterRoutes(server)
 
