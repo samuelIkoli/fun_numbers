@@ -156,7 +156,5 @@ func Get_symbols(ctx *gin.Context){
 }
 
 func Webhook(ctx *gin.Context){
-	ctx.JSON(200, entity.Integrationson)
+	ctx.JSON(200, entity.Integrationjson)
 }
-
-//id = 01950b90-b1bf-75b7-b9e6-e831fdd18b5f
