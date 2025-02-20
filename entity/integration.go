@@ -62,7 +62,7 @@ var Integrationson = Integration{
       AppDescription: "This is a notification app to give recurring updates on the price of popular Forex symbols",
       AppLogo:        "https://my-portfolio-343207.web.app/MyLogo4.png",
       AppName:        "ForexPI",
-      AppURL:         "https://fun-numbers.onrender.com/telex-webhook",
+      AppURL:         "https://fun-numbers.onrender.com/integration.json",
       BackgroundColor: "#fff",
     },
     IntegrationCategory: "Monitoring & Logging",
