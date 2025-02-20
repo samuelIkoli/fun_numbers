@@ -8,9 +8,9 @@ type Date struct {
 
 // Descriptions structure
 type Descriptions struct {
-	AppName        string `json:"app_name"`
-	AppDescription string `json:"app_description"`
+  AppDescription string `json:"app_description"`
 	AppLogo        string `json:"app_logo"`
+	AppName        string `json:"app_name"`
 	AppURL         string `json:"app_url"`
 	BackgroundColor string `json:"background_color"`
 }
@@ -37,12 +37,11 @@ type Setting struct {
 type Data struct {
 	Date                Date         `json:"date"`
 	Descriptions        Descriptions `json:"descriptions"`
-	IsActive            bool         `json:"is_active"`
+  IntegrationCategory string       `json:"integration_category"`
 	IntegrationType     string       `json:"integration_type"`
+  IsActive            bool         `json:"is_active"`
 	KeyFeatures         []string     `json:"key_features"`
-	Permissions         Permissions  `json:"permissions"`
 	Author              string       `json:"author"`
-	IntegrationCategory string       `json:"integration_category"`
 	Settings            []Setting    `json:"settings"`
   TickURL             string       `json:"tick_url"`
 	TargetURL           string       `json:"target_url"`
@@ -60,18 +59,17 @@ var Integrationson = Integration{
       UpdatedAt: "2025-02-20",
     },
     Descriptions: Descriptions{
-      AppName:        "ForexPI",
       AppDescription: "This is a notification app to give recurring updates on the price of popular Forex symbols",
       AppLogo:        "https://my-portfolio-343207.web.app/MyLogo4.png",
+      AppName:        "ForexPI",
       AppURL:         "https://fun-numbers.onrender.com/telex-webhook",
       BackgroundColor: "#fff",
     },
-    IsActive:            false,
-    IntegrationType:     "interval",
-    KeyFeatures:         []string{"Forex", "Updates"},
-    Permissions:         Permissions{MonitoringUser: MonitoringUser{AlwaysOnline: true, DisplayName: "Network Monitor"}},
-    Author:              "Samuel Ikoli",
     IntegrationCategory: "Monitoring & Logging",
+    IntegrationType:     "interval",
+    IsActive:            true,
+    KeyFeatures:         []string{"Forex", "Updates"},
+    Author:              "Samuel Ikoli",
     Settings: []Setting{
       {
         Label:    "interval",
