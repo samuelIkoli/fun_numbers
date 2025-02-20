@@ -15,7 +15,7 @@ var Integrationson = map[string]interface{}{
       },
       "is_active": false,
       "integration_type": "interval",
-      "integration_category": "Monitoring and Logging",
+      "integration_category": "Monitoring & Logging",
       "key_features": []string{
         "Forex",
         "Updates",
