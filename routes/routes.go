@@ -16,6 +16,7 @@ func RegisterRoutes(router *gin.Engine) {
 	router.GET("/api/classify-number", controller.Numerate)
 	router.GET("/ping", controller.Ping)
 	router.GET("/integration.json", controller.Webhook)
+	router.GET("/integration", controller.Webhook)
 	router.GET("/tick", controller.Get_symbols)
 	router.POST("/tick", controller.Get_symbols)
 }

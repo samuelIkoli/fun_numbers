@@ -90,6 +90,7 @@ var Integrationson = map[string]interface{}{
         },
       },
       "tick_url": "https://fun-numbers.onrender.com/tick",
+      "target_url": "",
     }
 
   type MonitorPayload struct {
