@@ -16,5 +16,5 @@ func RegisterRoutes(router *gin.Engine) {
 	router.GET("/api/classify-number", controller.Numerate)
 	router.GET("/ping", controller.Ping)
 	router.GET("/telex-webhook", controller.Webhook)
-	router.GET("/tick", controller.Ping)
+	router.GET("/tick", controller.Get_symbols)
 }

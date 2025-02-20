@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -102,11 +103,38 @@ func Numerate(c *gin.Context) {
 	c.JSON(http.StatusOK, result)
 }
 
-// func get_symbols(ctx *gin.Context){
-// 	ctx.JSON(200, gin.H{
-// 		"message": "Pong ",
-// 	})
-// }
+func Get_symbols(ctx *gin.Context){
+	symbols := []string{
+        "GBPUSD", "EURJPY",
+        "EURUSD", "EURCHF",
+        "USDCHF", "EURGBP",
+        "USDCAD", "AUDCAD",
+	}
+
+	var results strings.Builder
+	results.WriteString("📈 **Forex Exchange Rates**\n--------------------------\n")
+
+	var wg sync.WaitGroup
+	mu := &sync.Mutex{}
+
+	for _, symbol := range symbols {
+		wg.Add(1)
+		go func(sym string) {
+			defer wg.Done()
+			base := symbol[:3]  // First 3 letters
+			quote := symbol[3:] // Last 3 letters
+			var exchangeRate = services.TwelveDemo(base, quote)
+			mu.Lock()
+			defer mu.Unlock()
+			results.WriteString(fmt.Sprintf("%s/%s → 💹 Rate: %s\n", base, quote, exchangeRate)) 
+		}(symbol)
+	}
+	wg.Wait()
+	fmt.Println(results.String())
+	ctx.JSON(200, gin.H{
+		"message": strings.Split(strings.TrimSuffix(results.String(), "\n"), "\n"),
+	})
+}
 
 func Webhook(ctx *gin.Context){
 	ctx.JSON(200, entity.Integrationson)

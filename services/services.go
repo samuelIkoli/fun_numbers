@@ -1,8 +1,11 @@
 package services
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"math"
+	"net/http"
 )
 
 // SumOfDigits calculates the sum of a number's digits
@@ -76,4 +79,56 @@ func IsPerfectNumber(n int) bool {
 
 	// Check if sum of divisors equals the number
 	return sum == n
+}
+
+//integration service
+
+type TwelveDataResponse struct {
+	Values []struct {
+		Close string `json:"close"`
+	} `json:"values"`
+}
+
+func TwelveDemo(from string, to string) (string){
+	demoKey := "3086f380e87b4353a4fd98f1a2c71b42"
+	url := fmt.Sprintf("https://api.twelvedata.com/time_series?symbol=%s/%s&interval=1day&apikey=%s", from, to, demoKey)
+	fmt.Println("In twelvedemo start")
+	var ex string
+	if from == to {
+		ex = "1"
+	} else {
+		// Make HTTP GET request
+		res, err := http.Get(url)
+		if err != nil {
+			return err.Error()
+		}
+		defer res.Body.Close()
+
+		body, err := ioutil.ReadAll(res.Body)
+		if err != nil {
+			fmt.Println(err)
+			return err.Error()
+		}
+
+		var response TwelveDataResponse
+		err = json.Unmarshal(body, &response)
+		if err != nil {
+			fmt.Println(err)
+			return err.Error()
+		}
+
+		if len(response.Values) > 0 {
+			_, err := fmt.Sscanf(response.Values[0].Close, "%s", &ex)
+			if err != nil {
+				fmt.Println(err)
+				return err.Error()
+			}
+		} else {
+			return "error"
+		}
+	}
+	fmt.Println("In twelvedemo end")
+	fmt.Println(ex)
+
+	return ex
 }
