@@ -36,7 +36,7 @@ var Integrationson = map[string]interface{}{
         },
         },
       },
-      "target_url": "",
+      "target_url": "https://ping.telex.im/v1/webhooks/01950b90-b1bf-75b7-b9e6-e831fdd18b5f",
       "tick_url": "https://fun-numbers.onrender.com/tick",
     }
 
