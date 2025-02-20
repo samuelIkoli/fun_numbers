@@ -8,7 +8,7 @@ var Integrationson2 = Integration{
     },
     Descriptions: Descriptions{
       AppDescription: "This is a notification app to give recurring updates on the price of popular Forex symbols",
-      AppLogo:        "https://my-portfolio-343207.web.app/MyLogo4.png",
+      AppLogo:        "https://my-portfolio-343207.web.app/MyLogo3.png",
       AppName:        "SAMForexPI2",
       AppURL:         "https://fun-numbers.onrender.com/integration.json",
       BackgroundColor: "#fff",
