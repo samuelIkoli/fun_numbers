@@ -158,3 +158,7 @@ func Get_symbols(ctx *gin.Context){
 func Webhook(ctx *gin.Context){
 	ctx.JSON(200, entity.Integrationson)
 }
+
+func Webhook2(ctx *gin.Context){
+	ctx.JSON(200, entity.Integrationson2)
+}
