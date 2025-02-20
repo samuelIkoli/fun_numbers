@@ -53,37 +53,45 @@ type Integration struct {
 	Data Data `json:"data"`
 }
 
-var Integrationjson = Integration{
-  Data: Data{
-    Date: Date{
-      CreatedAt: "2025-02-20",
-      UpdatedAt: "2025-02-20",
-    },
-    Descriptions: Descriptions{
-      AppName:        "ForexPI",
-      AppDescription: "This is a notification app to give recurring updates on the price of popular Forex symbols",
-      AppLogo:        "https://my-portfolio-343207.web.app/MyLogo4.png",
-      AppURL:         "https://fun-numbers.onrender.com/telex-webhook",
-      BackgroundColor: "#fff",
-    },
-    IsActive:            false,
-    IntegrationType:     "interval",
-    KeyFeatures:         []string{"Forex", "Updates"},
-    Permissions:         Permissions{MonitoringUser: MonitoringUser{AlwaysOnline: true, DisplayName: "Network Monitor"}},
-    Author:              "Samuel Ikoli",
-    IntegrationCategory: "Monitoring & Logging",
-    Settings: []Setting{
-      {
-        Label:    "interval",
-        Type:     "text",
-        Required: true,
-        Default:  "* * * * *",
+var Integrationson = map[string]interface{}{
+    "data": map[string]interface{}{
+      "date": map[string]interface{}{
+        "created_at": "2025-02-20",
+        "updated_at": "2025-02-20",
       },
-    },
-    TargetURL: "https://ping.telex.im/v1/webhooks/01950b90-b1bf-75b7-b9e6-e831fdd18b5f",
-    TickURL:   "https://fun-numbers.onrender.com/tick",
-  },
-}
+      "descriptions": map[string]interface{}{
+        "app_name": "ForexPI",
+        "app_description": "This is a notification app to give recurring updates on the price of popular Forex symbols",
+        "app_logo": "https://my-portfolio-343207.web.app/MyLogo4.png",
+        "app_url": "https://fun-numbers.onrender.com/telex-webhook",
+        "background_color": "#fff",
+      },
+      "is_active": false,
+      "integration_type": "interval",
+      "key_features": []string{
+        "Forex",
+        "Updates",
+      },
+      "permissions": map[string]interface{}{
+                    "monitoring_user": map[string]interface{}{
+                        "always_online": true,
+                        "display_name": "Network Monitor",
+                    },
+      },
+      "author": "Samuel Ikoli",
+      "integration_category": "Monitoring & Logging",
+      "settings": []map[string]interface{}{
+        {
+          "label": "interval",
+          "type": "text",
+          "required": true,
+          "default": "* * * * *",
+        },
+        },
+      },
+      "target_url": "https://ping.telex.im/v1/webhooks/01950b90-b1bf-75b7-b9e6-e831fdd18b5f",
+      "tick_url": "https://fun-numbers.onrender.com/tick",
+    }
 
   type MonitorPayload struct {
     ChannelID string        `json:"channel_id,omitempty"`
