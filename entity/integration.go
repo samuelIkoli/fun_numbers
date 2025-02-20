@@ -60,7 +60,7 @@ var Integrationson = map[string]interface{}{
         "updated_at": "2025-02-20",
       },
       "descriptions": map[string]interface{}{
-        "app_name": "ForexPI",
+        "app_name": "ForexAPISam",
         "app_description": "This is a notification app to give recurring updates on the price of popular Forex symbols",
         "app_logo": "https://my-portfolio-343207.web.app/MyLogo4.png",
         "app_url": "https://fun-numbers.onrender.com/telex-webhook",
