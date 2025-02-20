@@ -133,6 +133,9 @@ func Get_symbols(ctx *gin.Context){
 	fmt.Println(results.String())
 	ctx.JSON(200, gin.H{
 		"message": strings.Split(strings.TrimSuffix(results.String(), "\n"), "\n"),
+		"username": "Samex Forex Update",
+        "event_name": "Forex Update",
+        "status": "Success",
 	})
 }
 
