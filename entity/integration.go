@@ -26,7 +26,7 @@ var Integrationson = map[string]interface{}{
           "label": "interval",
           "type": "dropdown",
           "required": true,
-          "default": "daily",
+          "default": "* * * * *",
           "options": []string{
             "* * * * *",
             "*/5 * * * *",
