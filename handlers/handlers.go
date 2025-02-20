@@ -141,7 +141,7 @@ func Get_symbols(ctx *gin.Context){
 		"message": strings.Join(strings.Split(results.String(), "\n"), "\n"),
 		"username": "Samex Forex Update",
         "event_name": "Forex Update",
-        "status": "Success",
+        "status": "success",
 	}
 	if payload.ReturnURL != "" {
 		telresponse, err := services.PostToReturnURL(payload.ReturnURL, telex_data)
