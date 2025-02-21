@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"math"
 	"net/http"
+	"os"
 )
 
 // SumOfDigits calculates the sum of a number's digits
@@ -91,7 +92,7 @@ type TwelveDataResponse struct {
 }
 
 func TwelveDemo(from string, to string) (string){
-	demoKey := "3086f380e87b4353a4fd98f1a2c71b42"
+	demoKey := os.Getenv("API_DEMO_KEY")
 	url := fmt.Sprintf("https://api.twelvedata.com/time_series?symbol=%s/%s&interval=1day&apikey=%s", from, to, demoKey)
 	fmt.Println("In twelvedemo start")
 	var ex string
