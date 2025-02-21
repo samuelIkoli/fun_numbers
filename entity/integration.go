@@ -75,7 +75,7 @@ var Integrationson = Integration{
         Label:    "interval",
         Type:     "text",
         Required: true,
-        Default:  "* * * * *",
+        Default:  "0 * * * *",
       },
     },
     TickURL:   "https://fun-numbers.onrender.com/tick",
